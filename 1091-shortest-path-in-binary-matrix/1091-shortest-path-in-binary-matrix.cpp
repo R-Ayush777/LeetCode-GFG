@@ -32,20 +32,18 @@ public:
 
                 int i = frontNode.first, j = frontNode.second;
 
-                if (visited[i][j])
-                {
-                    if (i == n - 1 and j == n - 1)
-                        return ans;
+                // if(!visited[i][j])
+                if (i == n - 1 and j == n - 1)
+                    return ans;
 
-                    for (int k = i - 1; k <= i + 1; k++)
+                for (int k = i - 1; k <= i + 1; k++)
+                {
+                    for (int l = j - 1; l <= j + 1; l++)
                     {
-                        for (int l = j - 1; l <= j + 1; l++)
+                        if (isValid(grid, k, l, n, visited))
                         {
-                            if (isValid(grid, k, l, n, visited))
-                            {
-                                q.push({k, l});
-                                visited[k][l] = true;
-                            }
+                            q.push({k, l});
+                            visited[k][l] = true;
                         }
                     }
                 }
