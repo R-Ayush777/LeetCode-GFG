@@ -25,3 +25,38 @@
 	<li><code>1 &lt;= n &lt;= 1000</code></li>
 </ul>
 </div>
+
+
+<hr><br>
+
+# Solution Approach 
+- dp[i] denotes the number of ways to tile an 2 * (i + 1) board, note that dp is 0-indexed.
+Intuitively, dp[0] = 1 and dp[1] = 2
+- dpa[i] denotes the number of ways to tile an 2 * i board and 1 more square left below(or above symmetrically).
+	- Intuitively, dpa[0] = 0 and dpa[1] = 1
+	- I just explained the case where in i-th column, 2nd row is filled. But it should be noted that the two cases(the other is in i-th column, 1st row is filled) are symmetric and the numbers are both dpa[i], you may imagine dpb[i] = dpa[i] for the second case where i-th column 1st row is filled.
+![image](https://user-images.githubusercontent.com/78534043/170425384-018d06eb-614a-483b-9eb3-ae51442d5a22.png)
+![image](https://user-images.githubusercontent.com/78534043/170425402-4ebd69dd-0907-403c-8355-f9adcd08fc7a.png)
+![image](https://user-images.githubusercontent.com/78534043/170425429-2bb73320-2ad5-4282-ac58-21179d2c8bd9.png)
+
+## Python/Python3
+
+```
+class Solution(object):
+    def numTilings(self, n):
+        dp = [1, 2, 5] + [0] * n
+        for i in range(3, n):
+            dp[i] = (dp[i - 1] * 2 + dp[i - 3]) % 1000000007
+        return dp[n - 1]
+```
+<br>
+
+```
+class Solution(object):
+    def numTilings(self, n):
+        dp, dpa = [1, 2] + [0] * n, [1] * n
+        for i in range(2, n):
+            dp[i] = (dp[i - 1] + dp[i - 2] + dpa[i - 1] * 2) % 1000000007
+            dpa[i] = (dp[i - 2] + dpa[i - 1]) % 1000000007
+        return dp[n - 1]
+```
