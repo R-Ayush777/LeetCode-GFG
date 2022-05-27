@@ -9,4 +9,8 @@ public:
         }
         return res - 1;
     }
+    
+    // int numberOfSteps (int num) {
+    //     return num == 0 ? 0 : log2(num) + bitset<32>(num).count();
+    // }
 };
