@@ -13,12 +13,19 @@
 
 class Solution
 {
+
+    /*
+        -1 -> if need a camera
+        0 -> if have a camera
+        1 -> if covered by a cmera
+    */
+
 public:
     int cameras = 0;
 
     int require(TreeNode *node)
     {
-        if (node == NULL)
+        if (!node)
             return 1;
         int lc = require(node->left);
         int rc = require(node->right);
@@ -38,7 +45,7 @@ public:
     {
         if (require(root) == -1)
             cameras++;
-            
+
         return cameras;
     }
 };
