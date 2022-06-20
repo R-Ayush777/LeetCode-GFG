@@ -18,11 +18,9 @@ public:
                 r++;
             if (s[i] == '=')
                 n = stoll(s.substr(i + 1));
-        
         }
-        n = n - 1;
+        n--;
         long long val1 = 1, val2 = 1;
-
         for (long long i = n; i > n - r; i--)
             val1 *= i;
         for (long long i = 1; i <= r; i++)
