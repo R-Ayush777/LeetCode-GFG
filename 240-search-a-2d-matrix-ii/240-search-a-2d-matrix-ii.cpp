@@ -8,7 +8,6 @@ public:
         while (row <= n and col >= 0)
         {
             int curr = matrix[row][col];
-            
             if (curr == target)
                 return true;
             else if (curr < target)
