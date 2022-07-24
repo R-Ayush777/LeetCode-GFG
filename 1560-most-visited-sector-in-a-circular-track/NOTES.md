@@ -10,7 +10,9 @@ s ----- n
 ​
 ​
 **Explanation**
+<br>
 If start <= end, return the range [start, end].
+<br>
 If end < start, return the range [1, end] + range [start, n].
 ​
 ​
